@@ -1,5 +1,5 @@
-﻿using chapter.Models;
-using chapter.Repositories;
+﻿using chapter.Interfaces;
+using chapter.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,26 +9,27 @@ namespace chapter.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class LivroController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
-        private readonly LivroRepository _livroRepository;
+        private readonly IUsuarioRepository _iUsuarioRepository;
 
-        public LivroController(LivroRepository livroRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository)
         {
-            _livroRepository = livroRepository;
+            _iUsuarioRepository = usuarioRepository;
         }
 
         [HttpGet]
-        public IActionResult Listar() 
+        public IActionResult Listar()
         {
             try
             {
-                return Ok(_livroRepository.Listar());
+                return Ok(_iUsuarioRepository.Listar());
             }
             catch (Exception e)
             {
 
                 throw new Exception(e.Message);
+
             }
         }
         [HttpGet("{id}")]
@@ -36,13 +37,13 @@ namespace chapter.Controllers
         {
             try
             {
-                Livro livro = _livroRepository.BuscarId(id);
+                Usuario usuario = _iUsuarioRepository.BuscarId(id);
 
-                if (livro == null)
+                if (usuario == null)
                 {
                     return NotFound();
                 }
-                return Ok(livro);
+                return Ok(usuario);
             }
             catch (Exception e)
             {
@@ -53,11 +54,11 @@ namespace chapter.Controllers
 
         [HttpPost]
 
-        public IActionResult Cadastrar(Livro livro)
+        public IActionResult Cadastrar(Usuario usuario)
         {
             try
             {
-                _livroRepository.Cadastrar(livro);
+                _iUsuarioRepository.Cadastrar(usuario);
                 return StatusCode(201);
             }
             catch (Exception e)
@@ -69,14 +70,14 @@ namespace chapter.Controllers
 
         [HttpPut("{id}")]
 
-        public IActionResult Atualizar(int id, Livro livro)
+        public IActionResult Alterar(int id, Usuario usuario)
         {
             try
             {
-                _livroRepository.Atualizar(id, livro);
+                _iUsuarioRepository.Alterar(id, usuario);
                 return StatusCode(204);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
                 throw new Exception(e.Message);
@@ -89,7 +90,7 @@ namespace chapter.Controllers
         {
             try
             {
-                _livroRepository.Deletar(id);
+                _iUsuarioRepository.Deletar(id);
                 return StatusCode(204);
             }
             catch (Exception)
@@ -97,8 +98,7 @@ namespace chapter.Controllers
 
                 throw;
             }
-            
-        }
 
+        }
     }
 }
