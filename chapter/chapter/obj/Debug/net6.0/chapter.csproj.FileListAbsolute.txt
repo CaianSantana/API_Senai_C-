@@ -57,3 +57,4 @@ C:\Users\User\Desktop\C#_Senai\API\chapter\chapter\obj\Debug\net6.0\refint\chapt
 C:\Users\User\Desktop\C#_Senai\API\chapter\chapter\obj\Debug\net6.0\chapter.pdb
 C:\Users\User\Desktop\C#_Senai\API\chapter\chapter\obj\Debug\net6.0\chapter.genruntimeconfig.cache
 C:\Users\User\Desktop\C#_Senai\API\chapter\chapter\obj\Debug\net6.0\ref\chapter.dll
+C:\Users\User\Desktop\C#_Senai\API\chapter\chapter\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
